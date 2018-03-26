@@ -8,7 +8,7 @@ pulbic class LivyClient{
       //job
       livyClientJobData ClientJobData = livyClientManager.ExuteJob();
       
-      boolean success -false;
+      boolean success = false;
       while (true){
         String status = livyClientManager.GetJobStatus(clientJobData.id);
         
