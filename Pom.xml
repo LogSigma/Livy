@@ -1,0 +1,13 @@
+<properties>
+  <java-version>1.8</java-version>
+  <spark.version>2.1.2</spark.version>
+  <scala-version>2.11.8</spark-version>
+</properties>
+
+<dependecy>
+  <groudId>org.scala-lang</groudId>
+  <artifactId>scala-library</artifactId>
+  <scope>compile</scope>
+  <version>${scala-version}</version>
+</dependecy>
+
