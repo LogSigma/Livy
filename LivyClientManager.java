@@ -75,4 +75,48 @@ public class LivyClientManager{
     return OUTPUT_ROOT + outputFileName;    
   }
   
+  public String GetResult() throws IOEception InterruptedException{
+    String resultData = null;
+    List<String> command new ArrayList<String>();
+    command.add("hadoop");
+    command.add("fs");
+    command.add("-get");
+    command.add(GetResultPath());
+    command.add("/tmp");
+    
+    ProcessBuilder builder = new ProcessBuilder(command);
+    final Process = builder.start();
+    InputStream is = process.getInputStream();
+    inheritIO(is, System.out);
+    inheritIO(process.getErrorStream(), System.err);
+    process.waifFor();
+    BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("/tmp/" + outputFileName)));
+    
+    String inputLine;
+    StringBuffer response = new StringBuffer();
+    while((inputLine = br.readLine()) != null){
+      response.append(inputLine);  
+    }
+    br.close();
+    resultData = response.toString();
+    
+    return resultData;
+  }
+  
+  public void ClearResult() throws IOException, InterruptedException{
+    List<String> command = new ArrayList<String>();
+    command.add("hadoop");
+    command.add("fs");
+    command.add("-rm");
+    command.add(GetResultPaht());
+    
+    ProcessBuilder builder = new ProcessBuilder(command);
+    final Process process = builder.start();
+    InputStream is = process.getInputStream();
+    inheritIO(is, System.out);
+    inheritIO(process.getErrorStream(), System.err);
+    process.waitFor();
+    
+  }
+  
 } 
