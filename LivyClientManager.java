@@ -9,7 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-imoprt java.util.Scanner;
+import java.util.Scanner;
 
 import org.json.simple.JSONObject;
 
@@ -37,9 +37,37 @@ public class LivyClientManager{
     
     int httpResult = con.getResponesCode();
     if(httpResult == HttpURLConnection.HTTP_OK || httpResult == HttpURLConnection.HTTP_CREATED){
+      BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+      String inputLine;
+      StringBuffer response = new StringBuffer();
       
+      while((inputLine = br.readLine()) != null){
+        response.append(inputLine);
+      }
+      br.close();
+      
+      clientJobData = new LivyClientJobData(response.toString());
+      
+      return clientJobData;
+      
+    } else{
+      throw new IOExecption(con.getResponseMessage());  
     }
-    
   }
   
+  public String GetJobStatus(Long id) throws IOEception{
+    URL object = new URL(LIVY_URL + "/batches/" + id + "/state");  
+  }
+  
+  public static void inheritIO(final InputStream src, final PringStream dest){
+    new Thread(new Runnable(){
+      Scanner sc = new Scanner(src);
+      while(sc.hasNextLine()){
+        dest.printLn(sc.nextLine());
+      }
+      sc.close();
+    }}).start();  
+  }
+  
+  public final S
 }  
