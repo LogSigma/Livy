@@ -15,6 +15,8 @@ import org.json.simple.JSONObject;
 
 public class LivyClientManager{
   public final String LIVY_URL = "http:10.11.11.123:9876";
+  public final String OUTPUT_ROOT = "hdfs:///user/logsigma/";
+  public String outputFileName = "livy_result_test.txt";
   
   public LivylientJobData ExcuteJob() throws IOException{
     URL object = new URL(LIVY_URL + "/batches");
@@ -69,5 +71,8 @@ public class LivyClientManager{
     }}).start();  
   }
   
-  public final S
-}  
+  public String GetResultPath(){
+    return OUTPUT_ROOT + outputFileName;    
+  }
+  
+} 
