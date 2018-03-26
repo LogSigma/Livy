@@ -1,9 +1,11 @@
 import java.io.IOException;
+import java.util.*;
+import com.cloudera.livy.*;
 
-pulbic class LivyClient{
+public class LivyClient{
   static LivyClientManager livyClientManager = new LivyClientManager();
   
-  public static void main(String{} args) throws Exception {
+  public static void main(String[] args) throws Exception {
     try{
       //job
       livyClientJobData ClientJobData = livyClientManager.ExuteJob();
