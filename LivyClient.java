@@ -28,7 +28,7 @@ pulbic class LivyClient{
         String resultData = livyClientManager.GetResult();
         livyClientManager.ClearResult();
       }
-    }cathe(IOException e){
+    }catch(IOException e){
       e.printStackTrace();
     }
   }
