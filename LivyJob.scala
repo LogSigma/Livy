@@ -18,7 +18,7 @@ class LivyJob {
   }
   
   def TestWriteResultToHDFS(){
-    val filePath = "hdfs://user/Livy/livy_result_test.txt"
+    val filePath = "hdfs://user/logsimga/livy_result_test.txt"
     val resultData = "result data test"
     
     WriteDataToHDFS(filePath, resultData)
